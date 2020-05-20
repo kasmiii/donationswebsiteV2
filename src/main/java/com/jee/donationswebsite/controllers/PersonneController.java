@@ -2,7 +2,6 @@ package com.jee.donationswebsite.controllers;
 
 import com.jee.donationswebsite.entities.Demande;
 import com.jee.donationswebsite.entities.Demandeur;
-import com.jee.donationswebsite.entities.Objet;
 import com.jee.donationswebsite.entities.Personne;
 import com.jee.donationswebsite.repositories.ObjetRepo;
 import com.jee.donationswebsite.repositories.PersonneRepo;
@@ -47,7 +46,7 @@ public class PersonneController {
     @ResponseBody
     @Transactional //very important it's a milestone to save data with JPA
     public Demandeur savePerson(){
-        Demandeur pers=new Demandeur("vbbvb","dgg","uuuu","uuuu","ttrtt","user","pass");
+        Demandeur pers=new Demandeur("vbbvb","dgg","uuuu","uuuu","ttrtt","user","pass","dgdgdgdg");
         this.entityManager.persist(pers);
         return pers;
     }

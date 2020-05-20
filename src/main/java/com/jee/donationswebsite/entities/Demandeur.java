@@ -13,7 +13,7 @@ public class Demandeur extends Personne{
     public Demandeur() {
     }
 
-    public Demandeur(String mCin, String mNom, String mPrenom, String mAdresse, String mTelephone, String mUsername, String mPassword) {
-        super(mCin, mNom, mPrenom, mAdresse, mTelephone, mUsername, mPassword);
+    public Demandeur(String mCin, String mNom, String mPrenom, String mAdresse, String mTelephone, String mUsername, String mPassword, String mImage) {
+        super(mCin, mNom, mPrenom, mAdresse, mTelephone, mUsername, mPassword, mImage);
     }
 }

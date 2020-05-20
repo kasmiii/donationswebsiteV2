@@ -9,4 +9,10 @@ import javax.persistence.Table;
 @DiscriminatorValue("donateur")
 public class Donateur extends Personne {
 
+    public Donateur() {
+    }
+
+    public Donateur(String mCin, String mNom, String mPrenom, String mAdresse, String mTelephone, String mUsername, String mPassword, String mImage) {
+        super(mCin, mNom, mPrenom, mAdresse, mTelephone, mUsername, mPassword, mImage);
+    }
 }

@@ -26,13 +26,16 @@ public class Personne {
     protected String mUsername;
     @Column(name = "password")
     protected String mPassword;
-    /*@Column(name = "type")
-    protected String mType;
-*/
+    @Column(name = "image")
+    protected String mImage;
+
+    @Transient
+    protected Association mAssociation;
+
     public Personne() {
     }
 
-    public Personne(String mCin, String mNom, String mPrenom, String mAdresse, String mTelephone, String mUsername, String mPassword) {
+    public Personne(String mCin, String mNom, String mPrenom, String mAdresse, String mTelephone, String mUsername, String mPassword,String mImage) {
         this.mCin = mCin;
         this.mNom = mNom;
         this.mPrenom = mPrenom;
@@ -40,6 +43,7 @@ public class Personne {
         this.mTelephone = mTelephone;
         this.mUsername = mUsername;
         this.mPassword = mPassword;
+        this.mImage=mImage;
         //this.mType = mType;
     }
 
@@ -119,5 +123,21 @@ public class Personne {
                 ", mPassword='" + mPassword + '\'' +
        //         ", mType='" + mType + '\'' +
                 '}';
+    }
+
+    public String getmImage() {
+        return mImage;
+    }
+
+    public void setmImage(String mImage) {
+        this.mImage = mImage;
+    }
+
+    public Association getmAssociation() {
+        return mAssociation;
+    }
+
+    public void setmAssociation(Association mAssociation) {
+        this.mAssociation = mAssociation;
     }
 }
