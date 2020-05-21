@@ -19,4 +19,8 @@ public interface PersonneRepo extends JpaRepository<Personne,Integer> {
 
     @Query(value = "select p from Personne p")
     List<Personne> getAllPersons();
+
+    @Query("select p from Personne p where p.mUsername=?1 and p.mPassword=?2 ")
+    Personne getPersonneByUsernamdAAndMPassword(String username,String password);
+
 }

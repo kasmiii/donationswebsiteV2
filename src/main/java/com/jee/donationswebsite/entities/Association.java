@@ -2,12 +2,10 @@ package com.jee.donationswebsite.entities;
 
 import javax.persistence.*;
 
-@Entity(name = "association")
-@Table(name = "association")
+@Entity
 public class Association {
 
     @Id
-    @GeneratedValue
     @Column(name = "libelle_association")
     private String mLibelleAssociation;
 
@@ -20,7 +18,8 @@ public class Association {
 
     public Association() {}
 
-    public Association(String mNomAssociation, String mAdresseLocale, String mCinPersonne) {
+    public Association(String mLibelleAssociation, String mNomAssociation, String mAdresseLocale, String mCinPersonne) {
+        this.mLibelleAssociation = mLibelleAssociation;
         this.mNomAssociation = mNomAssociation;
         this.mAdresseLocale = mAdresseLocale;
         this.mCinPersonne = mCinPersonne;

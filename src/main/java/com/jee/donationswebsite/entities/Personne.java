@@ -114,14 +114,15 @@ public class Personne {
     @Override
     public String toString() {
         return "Personne{" +
-                ", mCin='" + mCin + '\'' +
+                " mCin='" + mCin + '\'' +
                 ", mNom='" + mNom + '\'' +
                 ", mPrenom='" + mPrenom + '\'' +
                 ", mAdresse='" + mAdresse + '\'' +
                 ", mTelephone='" + mTelephone + '\'' +
                 ", mUsername='" + mUsername + '\'' +
                 ", mPassword='" + mPassword + '\'' +
-       //         ", mType='" + mType + '\'' +
+                ", mImage='" + mImage + '\'' +
+                mAssociation.toString()+
                 '}';
     }
 

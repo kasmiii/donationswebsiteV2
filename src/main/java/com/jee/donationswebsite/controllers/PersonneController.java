@@ -28,7 +28,6 @@ public class PersonneController {
     @PersistenceContext
     private EntityManager entityManager;
 
-
     @GetMapping(path = "/personne/{id}")
     @ResponseBody
     public Personne getOne(@PathVariable("id")String id){
