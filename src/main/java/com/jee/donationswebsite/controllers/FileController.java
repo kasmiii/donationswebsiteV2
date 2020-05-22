@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
 
 @RestController
@@ -67,10 +68,12 @@ public class FileController {
     @PostMapping(path = "/signin")
     @Transactional
     Personne signin(@RequestBody Login login){
-        Personne personne=personneRepo.getPersonneByUsernamdAAndMPassword(login.getUsename(),login.getPassword());
+        System.out.println("le login envoye est\t\t\t\t"+login);
+        Personne personne=personneRepo.getPersonneByUsernamdAAndMPassword(login.getUsername(),login.getPassword());
         if(personne!=null){
             Association association=associationRepo.getAssociationByCin(personne.getmCin());
             if(association!=null){
+                //HttpSession session=();
                 personne.setmAssociation(association);
             }
         }

@@ -2,23 +2,23 @@ package com.jee.donationswebsite.model;
 
 public class Login {
 
-    private String usename;
+    private String username;
     private String password;
 
     public Login() {
     }
 
-    public Login(String usename, String password) {
-        this.usename = usename;
+    public Login(String username, String password) {
+        this.username = username;
         this.password = password;
     }
 
-    public String getUsename() {
-        return usename;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUsename(String usename) {
-        this.usename = usename;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
@@ -32,9 +32,8 @@ public class Login {
     @Override
     public String toString() {
         return "Login{" +
-                "usename='" + usename + '\'' +
+                "username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 '}';
     }
-
 }
