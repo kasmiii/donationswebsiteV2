@@ -3,12 +3,12 @@ package com.jee.donationswebsite.entities;
 import javax.persistence.*;
 
 @Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+/*@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(
         discriminatorType = DiscriminatorType.STRING,
         name = "type",
         columnDefinition = "varchar(20)"
-)
+)*/
 public class Personne {
 
     @Id
@@ -29,13 +29,15 @@ public class Personne {
     @Column(name = "image")
     protected String mImage;
 
+    @Column(name = "type")
+    protected String mType;
     @Transient
     protected Association mAssociation;
 
     public Personne() {
     }
 
-    public Personne(String mCin, String mNom, String mPrenom, String mAdresse, String mTelephone, String mUsername, String mPassword,String mImage) {
+    public Personne(String mCin, String mNom, String mPrenom, String mAdresse, String mTelephone, String mUsername, String mPassword,String mImage,String mType) {
         this.mCin = mCin;
         this.mNom = mNom;
         this.mPrenom = mPrenom;
@@ -44,7 +46,7 @@ public class Personne {
         this.mUsername = mUsername;
         this.mPassword = mPassword;
         this.mImage=mImage;
-        //this.mType = mType;
+        this.mType = mType;
     }
 
     public String getmCin() {
@@ -103,13 +105,13 @@ public class Personne {
         this.mPassword = mPassword;
     }
 
-    /*public String getmType() {
+    public String getmType() {
         return mType;
     }
 
     public void setmType(String mType) {
         this.mType = mType;
-    }*/
+    }
 
     @Override
     public String toString() {
@@ -122,7 +124,7 @@ public class Personne {
                 ", mUsername='" + mUsername + '\'' +
                 ", mPassword='" + mPassword + '\'' +
                 ", mImage='" + mImage + '\'' +
-                mAssociation.toString()+
+                //mAssociation.toString()+
                 '}';
     }
 

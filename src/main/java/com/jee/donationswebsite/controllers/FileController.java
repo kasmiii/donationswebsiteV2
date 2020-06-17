@@ -9,14 +9,12 @@ import com.jee.donationswebsite.repositories.AssociationRepo;
 import com.jee.donationswebsite.repositories.PersonneRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
 
 @RestController
@@ -56,6 +54,14 @@ public class FileController {
         Association association=personne.getmAssociation();
         //System.out.println(association.toString());
         //System.out.println(personne.toString());
+        /*if(personne.getmType().equals("donateur")){
+            Donateur donateur=new Donateur(personne.getmCin(),personne.getmNom(),personne.getmPrenom(),personne.getmAdresse(),personne.getmTelephone(),personne.getmUsername(),personne.getmPassword(),personne.getmImage(),personne.getmType());
+            this.entityManager.persist(donateur);
+        }
+        else{
+            Demandeur demandeur=new Demandeur(personne.getmCin(),personne.getmNom(),personne.getmPrenom(),personne.getmAdresse(),personne.getmTelephone(),personne.getmUsername(),personne.getmPassword(),personne.getmImage(),personne.getmType());
+            this.entityManager.persist(demandeur);
+        }*/
         this.entityManager.persist(personne);
 
         if(association!=null){
@@ -66,8 +72,9 @@ public class FileController {
     }
 
     @PostMapping(path = "/signin")
+    @ResponseBody
     @Transactional
-    Personne signin(@RequestBody Login login){
+    public Personne signin(@RequestBody Login login){
         System.out.println("le login envoye est\t\t\t\t"+login);
         Personne personne=personneRepo.getPersonneByUsernamdAAndMPassword(login.getUsername(),login.getPassword());
         if(personne!=null){
@@ -77,6 +84,7 @@ public class FileController {
                 personne.setmAssociation(association);
             }
         }
+        System.out.println("la personne trouvee est:"+personne);
         return personne;
     }
 
