@@ -2,26 +2,34 @@ package com.jee.donationswebsite.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.Id;
 
-@Entity(name = "vetement")
-@Table(name = "vetement")
-public class Vetement extends Objet {
 
+@Entity
+public class Vetement {
+
+    @Id
+    @Column(name = "id_objet")
+    private String mIdObjet;
     @Column(name = "taille")
     private String mTaille;
     @Column(name = "categorie")
     private String mCategorie;
+
+    public Vetement() {
+    }
 
     public Vetement(String mTaille, String mCategorie) {
         this.mTaille = mTaille;
         this.mCategorie = mCategorie;
     }
 
-    public Vetement(String mIdObjet, String mDescription, String mTaille, String mCategorie) {
-        super(mIdObjet, mDescription);
-        this.mTaille = mTaille;
-        this.mCategorie = mCategorie;
+    public String getId() {
+        return mIdObjet;
+    }
+
+    public void setId(String id) {
+        this.mIdObjet = id;
     }
 
     public String getmTaille() {
@@ -46,7 +54,7 @@ public class Vetement extends Objet {
                 "mTaille='" + mTaille + '\'' +
                 ", mCategorie='" + mCategorie + '\'' +
                 ", mIdObjet='" + mIdObjet + '\'' +
-                ", mDescription='" + mDescription + '\'' +
+                //", mDescription='" + mDescription + '\'' +
                 '}';
     }
 }

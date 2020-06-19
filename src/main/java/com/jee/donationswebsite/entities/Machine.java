@@ -1,44 +1,45 @@
 package com.jee.donationswebsite.entities;
-
-import javafx.beans.binding.ObjectExpression;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.Id;
 
-@Entity(name = "machine")
-@Table(name = "machine")
-public class Machine extends Objet {
+@Entity
+public class Machine {
 
     @Column(name = "nom_machine")
     private String mNomMachine;
     @Column(name = "type_machine")
     private String mTypeMachine;
+    @Id
+    @Column(name = "id_objet")
+    private String mIdObjet;
 
+    public Machine() {
+    }
 
-    public Machine(String mNomMachine, String mTypeMachine) {
+    public Machine(String id, String mNomMachine, String mTypeMachine) {
+        this.mIdObjet=id;
         this.mNomMachine = mNomMachine;
         this.mTypeMachine = mTypeMachine;
     }
 
-    public Machine(String mIdObjet, String mDescription, String mNomMachine, String mTypeMachine) {
-        super(mIdObjet, mDescription);
-        this.mNomMachine = mNomMachine;
-        this.mTypeMachine = mTypeMachine;
+    public String getmIdObjet() {
+        return mIdObjet;
+    }
+
+    public void setmIdObjet(String mIdObjet) {
+        this.mIdObjet = mIdObjet;
     }
 
     public String getmNomMachine() {
         return mNomMachine;
     }
-
     public void setmNomMachine(String mNomMachine) {
         this.mNomMachine = mNomMachine;
     }
-
     public String getmTypeMachine() {
         return mTypeMachine;
     }
-
     public void setmTypeMachine(String mTypeMachine) {
         this.mTypeMachine = mTypeMachine;
     }
@@ -49,7 +50,6 @@ public class Machine extends Objet {
                 "mNomMachine='" + mNomMachine + '\'' +
                 ", mTypeMachine='" + mTypeMachine + '\'' +
                 ", mIdObjet='" + mIdObjet + '\'' +
-                ", mDescription='" + mDescription + '\'' +
                 '}';
     }
 }

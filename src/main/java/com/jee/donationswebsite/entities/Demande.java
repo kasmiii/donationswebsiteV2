@@ -6,15 +6,14 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import java.sql.Date;
 
-@Entity(name = "demande")
-@Table(name = "demande")
+@Entity
 public class Demande {
 
     @Id
     @Column(name = "id_demande")
     private String mIdDemande;
     @Column(name = "date_demande")
-    private Date mDateDemande;
+    private String mDateDemande;
     @Column(name = "status")
     private String mStatus;
     @Column(name = "quantite")
@@ -26,7 +25,7 @@ public class Demande {
 
     public Demande() {}
 
-    public Demande(String mIdDemande, Date mDateDemande, String mStatus, int mQuantite, String mIdObjet, String mCinDemandeur) {
+    public Demande(String mIdDemande, String mDateDemande, String mStatus, int mQuantite, String mIdObjet, String mCinDemandeur) {
         this.mIdDemande = mIdDemande;
         this.mDateDemande = mDateDemande;
         this.mStatus = mStatus;
@@ -43,11 +42,11 @@ public class Demande {
         this.mIdDemande = mIdDemande;
     }
 
-    public Date getmDateDemande() {
+    public String getmDateDemande() {
         return mDateDemande;
     }
 
-    public void setmDateDemande(Date mDateDemande) {
+    public void setmDateDemande(String mDateDemande) {
         this.mDateDemande = mDateDemande;
     }
 

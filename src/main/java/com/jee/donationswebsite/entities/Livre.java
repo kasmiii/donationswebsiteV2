@@ -1,13 +1,14 @@
 package com.jee.donationswebsite.entities;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.Id;
 
-@Entity(name = "livre")
-@Table(name = "livre")
-public class Livre extends Objet {
+@Entity
+public class Livre {
 
+    @Id
+    @Column(name = "id_objet")
+    private String mIdObjet;
     @Column(name = "titre")
     private String mTitre;
     @Column(name = "nom_auteur")
@@ -15,17 +16,22 @@ public class Livre extends Objet {
     @Column(name = "genre")
     private String mGenre;
 
-    public Livre(String mTitre, String mNomAuteur, String mGenre) {
+    public Livre() {
+    }
+
+    public Livre(String id, String mTitre, String mNomAuteur, String mGenre) {
+        this.mIdObjet=id;
         this.mTitre = mTitre;
         this.mNomAuteur = mNomAuteur;
         this.mGenre = mGenre;
     }
 
-    public Livre(String mIdObjet, String mDescription, String mTitre, String mNomAuteur, String mGenre) {
-        super(mIdObjet, mDescription);
-        this.mTitre = mTitre;
-        this.mNomAuteur = mNomAuteur;
-        this.mGenre = mGenre;
+    public String getId() {
+        return mIdObjet;
+    }
+
+    public void setId(String id) {
+        this.mIdObjet = id;
     }
 
     public String getmTitre() {
@@ -59,7 +65,6 @@ public class Livre extends Objet {
                 ", mNomAuteur='" + mNomAuteur + '\'' +
                 ", mGenre='" + mGenre + '\'' +
                 ", mIdObjet='" + mIdObjet + '\'' +
-                ", mDescription='" + mDescription + '\'' +
                 '}';
     }
 }

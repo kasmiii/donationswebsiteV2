@@ -50,19 +50,9 @@ public class FileController {
     @PostMapping(path = "/signup")
     @Transactional
     public Personne savePersonne(@RequestBody Personne personne){
-        //System.out.println("le personne recupere est: "+personne);
+
         Association association=personne.getmAssociation();
-        //System.out.println(association.toString());
-        //System.out.println(personne.toString());
-        /*if(personne.getmType().equals("donateur")){
-            Donateur donateur=new Donateur(personne.getmCin(),personne.getmNom(),personne.getmPrenom(),personne.getmAdresse(),personne.getmTelephone(),personne.getmUsername(),personne.getmPassword(),personne.getmImage(),personne.getmType());
-            this.entityManager.persist(donateur);
-        }
-        else{
-            Demandeur demandeur=new Demandeur(personne.getmCin(),personne.getmNom(),personne.getmPrenom(),personne.getmAdresse(),personne.getmTelephone(),personne.getmUsername(),personne.getmPassword(),personne.getmImage(),personne.getmType());
-            this.entityManager.persist(demandeur);
-        }*/
-        this.entityManager.persist(personne);
+                this.entityManager.persist(personne);
 
         if(association!=null){
             this.entityManager.persist(association);
@@ -75,16 +65,15 @@ public class FileController {
     @ResponseBody
     @Transactional
     public Personne signin(@RequestBody Login login){
-        System.out.println("le login envoye est\t\t\t\t"+login);
+        //System.out.println("le login envoye est\t\t\t\t"+login);
         Personne personne=personneRepo.getPersonneByUsernamdAAndMPassword(login.getUsername(),login.getPassword());
         if(personne!=null){
             Association association=associationRepo.getAssociationByCin(personne.getmCin());
             if(association!=null){
-                //HttpSession session=();
                 personne.setmAssociation(association);
             }
         }
-        System.out.println("la personne trouvee est:"+personne);
+        //System.out.println("la personne trouvee est:"+personne);
         return personne;
     }
 
