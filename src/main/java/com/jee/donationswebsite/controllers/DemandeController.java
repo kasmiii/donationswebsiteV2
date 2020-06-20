@@ -88,12 +88,6 @@ public class DemandeController {
 
         List<Demande> list=demandeRepo.getDemandeById(cin);
 
-        //System.out.println("la liste des demandes est:\n");
-
-        /*for (int i=0;i<list.size();i++){
-            System.out.println(list.get(i));
-        }*/
-
         for (int i=0;i<list.size();i++){
             DemandeItem demandeItem=new DemandeItem(
                     list.get(i).getmIdDemande(),list.get(i).getmDateDemande(),
@@ -113,7 +107,6 @@ public class DemandeController {
 
         System.out.println("id demande recu est"+id_demande+"type:"+type);
         String id_objet=demandeRepo.getIdObjet(id_demande);
-        //String type_objet=objetRepo.getTypeObjet(id_objet);
         Demande demande=demandeRepo.getOne(id_demande);
         demandeRepo.deleteDemande(id_demande);
         switch (type){
