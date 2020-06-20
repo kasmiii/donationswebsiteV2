@@ -15,7 +15,10 @@ public class ObjetRepoTest {
     void asertThatObjetIsReturnedCorrectelly(){
         assertThat(objetRepo.getObjetById("15NpBI").getmDescription().equals("livre2"));
     }
-    //@Test
-    //void assertThat
+
+    @Test
+    void assertThatListOfObjetsIsCorrect(){
+        assertThat(objetRepo.getLobjetsByKeyword("ivr").get(0).getmIdObjet().equals("15NpBI"));
+    }
 
 }

@@ -1,5 +1,4 @@
 package com.jee.donationswebsite.model;
-
 import com.jee.donationswebsite.entities.*;
 
 public class DemandeInfo {
@@ -10,16 +9,18 @@ public class DemandeInfo {
     private Vetement vetement;
     private Livre livre;
     private Demande demande;
+    private Personne personne;
 
     public DemandeInfo() { }
 
-    public DemandeInfo(String type, Objet objet, Machine machine, Vetement vetement, Livre livre, Demande demande) {
+    public DemandeInfo(String type, Objet objet, Machine machine, Vetement vetement, Livre livre, Demande demande,Personne personne) {
         this.type = type;
         this.objet = objet;
         this.machine = machine;
         this.vetement = vetement;
         this.livre = livre;
         this.demande = demande;
+        this.personne=personne;
     }
 
     public String getType() {
@@ -69,4 +70,14 @@ public class DemandeInfo {
     public void setDemande(Demande demande) {
         this.demande = demande;
     }
+
+    public Personne getPersonne() {
+        return personne;
+    }
+
+    public void setPersonne(Personne personne) {
+        this.personne = personne;
+    }
+
+
 }

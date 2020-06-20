@@ -4,15 +4,12 @@ import com.jee.donationswebsite.entities.*;
 import com.jee.donationswebsite.model.DemandeInfo;
 import com.jee.donationswebsite.model.DemandeItem;
 import com.jee.donationswebsite.model.ObjetInterface;
-import com.jee.donationswebsite.model.ObjetProjection;
 import com.jee.donationswebsite.repositories.*;
 import org.springframework.web.bind.annotation.*;
-
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import java.util.*;
 
 @RestController
@@ -33,7 +30,8 @@ public class DemandeController {
     @Autowired
     private LivreRepo livreRepo;
 
-
+    @Autowired
+    private PersonneRepo personneRepo;
 
     @PostMapping(path = "/saveDemande")
     @ResponseBody
@@ -48,6 +46,7 @@ public class DemandeController {
         switch(typeObjet){
             case "livre":
                 Livre livre=demandeInfo.getLivre();
+                System.out.println("id du  livre recu est:"+livre);
                 entityManager.persist(livre);
                 break;
             case "machine":
@@ -57,6 +56,7 @@ public class DemandeController {
                 break;
             case "vetement":
                 Vetement vetement=demandeInfo.getVetement();
+                System.out.println("id du vetement recu est:"+vetement);
                 entityManager.persist(vetement);
                 break;
                 default:
@@ -140,6 +140,7 @@ public class DemandeController {
         Objet objet=objetRepo.getObjetById(demande.getmIdObjet());
         demandeInfo.setDemande(demande);
         demandeInfo.setObjet(objet);
+        demandeInfo.setPersonne(null);
         switch(type){
             case "machine":
                 Machine machine=machineRepo.getMachineById(objet.getmIdObjet());
@@ -158,4 +159,48 @@ public class DemandeController {
         }
         return demandeInfo;
     }
+
+    @GetMapping(path = "/searchDemandes")
+    @ResponseBody
+    public ArrayList<DemandeInfo> getDemandesByKeyword(@RequestParam("keyword")String keyword){
+
+        List<Objet> list_objets;
+
+        if(keyword.equals("ALL")){
+            list_objets=objetRepo.getAllObjets();
+        }
+        else list_objets=objetRepo.getLobjetsByKeyword(keyword);
+
+         ArrayList<DemandeInfo> list=new ArrayList<>();
+         for(int i=0;i<list_objets.size();i++){
+             DemandeInfo demandeInfo=new DemandeInfo();
+             demandeInfo.setObjet(list_objets.get(i));//set
+             Demande demande=demandeRepo.getDemandeByIdObjet(list_objets.get(i).getmIdObjet());
+             demandeInfo.setDemande(demande);//set
+             Personne personne=personneRepo.getPersonneByCin(demande.getmCinDemandeur());
+             demandeInfo.setPersonne(personne);//set
+             demandeInfo.setType(list_objets.get(i).getmTypeObjet());//set
+
+             switch (list_objets.get(i).getmTypeObjet()){
+                 case "vetement":
+                     Vetement vetement=vetementRepo.getVetementById(list_objets.get(i).getmIdObjet());
+                     demandeInfo.setVetement(vetement);//set
+                     break;
+                 case "machine":
+                     Machine machine=machineRepo.getMachineById(list_objets.get(i).getmIdObjet());
+                     demandeInfo.setMachine(machine);//set
+                     break;
+                 case "livre":
+                     Livre livre=livreRepo.getLivreById(list_objets.get(i).getmIdObjet());
+                     demandeInfo.setLivre(livre);//set
+                     break;
+                 default:
+                     System.out.println("no type found");
+                     break;
+             }
+             list.add(demandeInfo);
+         }
+         return list;
+    }
+
 }
