@@ -203,4 +203,15 @@ public class DemandeController {
          return list;
     }
 
+
+    @PostMapping(path = "/saveDonation")
+    @ResponseBody
+    @Transactional
+    public Affectation saveAffectation(@RequestBody Affectation affectation){
+
+        System.out.println(" l'affectation envoyee est:"+affectation);
+        this.entityManager.persist(affectation);
+        return affectation;
+    }
+
 }

@@ -5,8 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Entity(name = "affectation")
-@Table(name = "affectation")
+@Entity
 public class Affectation {
 
     @Id
