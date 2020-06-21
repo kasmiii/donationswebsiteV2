@@ -3,12 +3,6 @@ package com.jee.donationswebsite.entities;
 import javax.persistence.*;
 
 @Entity
-/*@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(
-        discriminatorType = DiscriminatorType.STRING,
-        name = "type",
-        columnDefinition = "varchar(20)"
-)*/
 public class Personne {
 
     @Id

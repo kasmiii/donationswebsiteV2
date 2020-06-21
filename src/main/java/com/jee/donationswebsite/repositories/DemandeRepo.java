@@ -24,4 +24,11 @@ public interface DemandeRepo extends JpaRepository<Demande,String> {
     @Query(value = "select d from Demande d where d.mIdObjet=?1")
     Demande getDemandeByIdObjet(String id);
 
+    @Modifying
+    @Query(value = "update Demande d set d.mStatus=?2 where d.mIdObjet=?1")
+    void updateDemande(String id_objet,String new_status);
+
+
+    /*@Query(value = "select d.mIdDemande from Demande d where d.mIdObjet=?1")
+    String getIdDemandeByIdObjet(String id_objet);*/
 }
